@@ -1,0 +1,18 @@
+.App {
+  
+}
+.card {
+  width: 250px;
+  height: 175px;
+  /* border: 1px solid black; */
+  box-shadow: 0 0 7px 3px lightgray;
+  overflow: auto; 
+  margin: 10px;
+}
+.card-place {
+  padding-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
