@@ -20,7 +20,7 @@ function App() {
       <div className="card-place">
         {cards.map((card, index) => (
           <div key={index} className="card">
-            <h1>{card.title}</h1>
+           {card.title && <h1>{card.title}</h1> }
             <CardInfo card={card} index={index} key={index} />
           </div>
         ))}

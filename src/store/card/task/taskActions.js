@@ -11,3 +11,10 @@ export const delTask = (id) => {
     id: id,
   };
 };
+export const setHeader = (title, id) => {
+  return {
+    type: "SET_HEADER",
+    title,
+    id,
+  }
+}

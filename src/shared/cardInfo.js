@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { addTask } from "../store/card/task/taskActions";
+import { addTask, setHeader } from "../store/card/task/taskActions";
 import { useDispatch } from "react-redux";
 import "./cardItem.scss";
 
 export function CardInfo({ card }) {
   const [value, setValue] = useState("");
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
 
   const addNewTask = () => {
@@ -13,22 +13,23 @@ export function CardInfo({ card }) {
     dispatch(addTask(value, card.id));
   };
 
-  const onSubmitValue = (e) => {
+
+console.log(inputValue)
+  const setTitle = (e) => {
     e.preventDefault();
-    const form = document.forms.setHeader;
-    setInputValue(form.elements.headerInput.value);
-    form.elements.headerInput.value = "";
+    dispatch(setHeader(inputValue, card.id));
+    
   };
 
   return (
     <div className="cardItem">
-      <form name="setHeader" onSubmit={onSubmitValue}>
-        <input type="text" id="12312" name="headerInput" />
-        <p>{inputValue}</p>
+      <form className="header-form" name="setHeader" onSubmit={setTitle}>
+     {!card.title && <input type="text" id="inputa" value={inputValue} name="headerInput" onChange={(e) => setInputValue(e.target.value)} />} 
+        
         <button type="submit">222</button>
       </form>
-      {/* <input type="text" value={value} onChange={(e) => setValue(e.target.value)} /> */}
-      <button onClick={addNewTask}>111</button>
+      {/* <input type="text" value={value} onChange={(e) => setValue(e.target.value)} /> 
+     <button onClick={addNewTask}>111</button> */}
       {card.tasks.map((task, index) => (
         <div key={index} className="taskInfo">
           <p>{task}</p>
@@ -37,4 +38,3 @@ export function CardInfo({ card }) {
     </div>
   );
 }
-// const todos = useSelector((store) => store.app.cards);

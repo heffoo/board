@@ -23,6 +23,17 @@ export default function cardReducer(state = initialState, action) {
           return card;
         }),
       };
+      case "SET_HEADER": 
+      return {
+        ...state, 
+        cards: state.cards.map((card) => {
+          
+          if (card.id === action.id) {console.log(action);
+            return { ...card, title: action.title};
+          }
+          return card;
+        }),   
+      }
     default:
       return state;
   }
