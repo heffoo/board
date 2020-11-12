@@ -1,0 +1,31 @@
+.App {
+  
+}
+
+.card-place {
+  padding-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.button-new-task {
+  width: 50px;
+  height: 50px;
+  margin: 55px 105px;
+  font: {
+    size: 24px;
+  }
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  background-color: lightgray;
+  border-radius: 20px;
+  box-shadow:  0 0 7px 11px lightgray;
+&:hover {
+  
+  transform: scale(0.8)
+}
+
+}

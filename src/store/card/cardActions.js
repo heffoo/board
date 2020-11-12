@@ -1,19 +1,18 @@
 export const addCard = (task) => {
   return {
-    type: "ADD_CARD",
+    type: "",
     text: task,
   };
 };
-export const deleteCard = () => {
+export const deleteCard = (id) => {
   return {
     type: "DELETE_CARD",
+    id,
   };
 };
-
-// export const addTask = (task) => {
-//     return {
-//       type: "ADD_TASK",
-//       value: task,
-
-//     };
-//   };
+export const addState = (state) => {
+  return {
+    type: "ADD_STATE",
+    state,
+  };
+};

@@ -5,10 +5,11 @@ export const addTask = (task, id) => {
     id: id,
   };
 };
-export const delTask = (id) => {
+export const delTask = (cardId, taskId) => {
   return {
     type: "DELETE_TASK",
-    id: id,
+    taskId,
+    cardId,
   };
 };
 export const setHeader = (title, id) => {
@@ -16,5 +17,5 @@ export const setHeader = (title, id) => {
     type: "SET_HEADER",
     title,
     id,
-  }
-}
+  };
+};

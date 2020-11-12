@@ -1,40 +1,72 @@
 import React, { useState } from "react";
-import { addTask, setHeader } from "../store/card/task/taskActions";
+import { addTask, setHeader, delTask } from "../store/card/task/taskActions";
+import { deleteCard } from "../store/card/cardActions";
 import { useDispatch } from "react-redux";
-import "./cardItem.scss";
+import "./cardInfo.scss";
+import { Task } from "./task/task";
 
 export function CardInfo({ card }) {
   const [value, setValue] = useState("");
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
+
   const dispatch = useDispatch();
 
-  const addNewTask = () => {
-    console.log(card.id);
+  const addNewTask = (e) => {
+    e.preventDefault();
+
     dispatch(addTask(value, card.id));
   };
-
-
-console.log(inputValue)
+  const closeCard = () => {
+    dispatch(deleteCard(card.id));
+  };
+  const deleteTask = (cardId, taskId) => {
+    dispatch(delTask(cardId, taskId));
+  };
   const setTitle = (e) => {
     e.preventDefault();
     dispatch(setHeader(inputValue, card.id));
-    
   };
 
   return (
     <div className="cardItem">
-      <form className="header-form" name="setHeader" onSubmit={setTitle}>
-     {!card.title && <input type="text" id="inputa" value={inputValue} name="headerInput" onChange={(e) => setInputValue(e.target.value)} />} 
-        
-        <button type="submit">222</button>
-      </form>
-      {/* <input type="text" value={value} onChange={(e) => setValue(e.target.value)} /> 
-     <button onClick={addNewTask}>111</button> */}
-      {card.tasks.map((task, index) => (
-        <div key={index} className="taskInfo">
-          <p>{task}</p>
+      <button onClick={closeCard} className="close-btn">
+        ×
+      </button>
+      {card.title && <h1 className="item-header">{card.title}</h1>}
+
+      {!card.title ? (
+        <form className="header-form" name="setHeader" onSubmit={setTitle}>
+          <div className="task-header">
+            <p> give me a name!</p>
+            <input
+              type="text"
+              className="input-for-header"
+              autoFocus
+              value={inputValue}
+              name="headerInput"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </div>
+        </form>
+      ) : (
+        <div>
+          <hr></hr>
+          <form onSubmit={addNewTask}>
+            <input
+              type="text"
+              autoFocus
+              className="input-for-task"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          </form>
         </div>
-      ))}
+      )}
+
+      {card.title &&
+        card.tasks.map((task, index) => (
+          <Task deleteTask={deleteTask} cardId={card.id} task={task} key={index} />
+        ))}
     </div>
   );
 }
