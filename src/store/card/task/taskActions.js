@@ -1,20 +1,21 @@
+import * as consts from '../consts';
 export const addTask = (task, id) => {
   return {
-    type: "ADD_TASK",
+    type: consts.ADD_TASK,
     value: task,
     id: id,
   };
 };
 export const delTask = (cardId, taskId) => {
   return {
-    type: "DELETE_TASK",
+    type: consts.DELETE_TASK,
     taskId,
     cardId,
   };
 };
 export const setHeader = (title, id) => {
   return {
-    type: "SET_HEADER",
+    type: consts.SET_HEADER,
     title,
     id,
   };
