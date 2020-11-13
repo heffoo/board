@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { addCard, addState } from "./store/card/cardActions";
-import { CardInfo } from './shared/card/cardInfo'
+import { CardInfo } from "./shared/card/cardInfo";
+import { AddCardButton } from "./shared/AddCardButton/AddCardButton";
+import { Modal } from "./shared/modal";
 
 function App() {
   const cards = useSelector((store) => store.app.cards);
   const state = useSelector((store) => store.app);
+  const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,15 +26,17 @@ function App() {
   };
   return (
     <div className="App">
-      <button className="q-btn"></button>
+      <button className="q-btn" title="ПОДСКАЗКА" onClick={() => setModalOpen(true)}>
+        ?
+      </button>
       <hr className="top-hr"></hr>
       <div className="card-place">
         {cards && cards.map((card, index) => <CardInfo card={card} index={index} key={index} />)}
 
-        <button className="button-new-task" onClick={() => addNewCard()}>
-          +
-        </button>
+        <AddCardButton addNewCard={addNewCard} />
       </div>
+
+      <Modal isOpen={isModalOpen} setOpen={setModalOpen} />
     </div>
   );
 }

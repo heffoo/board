@@ -4,7 +4,7 @@ import { deleteCard } from '../../store/card/cardActions'
 import { useDispatch } from "react-redux";
 import './cardInfo.scss'
 import { Task } from "../card/task/task";
-import { CardHeader } from "../card/cardHeader/cardHeader";
+import { CardHeader } from "../card/headerInput/headerInput";
 import { TaskInput } from "../card/taskInput/taskInput";
 
 export function CardInfo({ card }) {
@@ -43,7 +43,7 @@ export function CardInfo({ card }) {
           <hr className="task-hr"></hr>
           <TaskInput addNewTask={addNewTask} setValue={setValue} value={value}/>
         </div>
-      )}
+      )}<div className="modals" id="modals"></div>
       <div className="block-scroll-wrapper">
         <div className="block-scroll">
           {card.title &&

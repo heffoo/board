@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './cardHeader.scss'
+import './headerInput.scss'
 
 export function CardHeader({setTitle, inputValue, setInputValue}) {
     return (
