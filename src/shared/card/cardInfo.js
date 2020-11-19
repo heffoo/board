@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addTask, setHeader, delTask } from "../../store/card/task/taskActions";
+import { addTask, setHeader, delTask, setCompleted } from "../../store/card/task/taskActions";
 import { deleteCard } from '../../store/card/cardActions'
 import { useDispatch } from "react-redux";
 import './cardInfo.scss'
@@ -10,6 +10,7 @@ import { TaskInput } from "../card/taskInput/taskInput";
 export function CardInfo({ card }) {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
+  
 
   const dispatch = useDispatch();
 
@@ -18,6 +19,9 @@ export function CardInfo({ card }) {
     dispatch(addTask(value, card.id));
     setValue("");
   };
+  // const setTaskChecked = () => {
+  //   dispatch(setCompleted(card.id, task.id))
+  // }
   const closeCard = () => {
     dispatch(deleteCard(card.id));
   };

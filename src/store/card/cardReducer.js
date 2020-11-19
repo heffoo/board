@@ -32,6 +32,17 @@ export default function cardReducer(state = initialState, action) {
           } else return card;
         }),
       };
+      // case consts.SET_COMPLETED: 
+      // return {
+      //   ...state,
+      //   cards: state.cards.map((card, index) => {
+      //     if (card.id === action.cardId) {
+      //       card.tasks =card.tasks.sort((a,b)=> {
+              
+      //       })
+      //     } else return card;
+      //   }),
+      // };
     case consts.SET_HEADER:
       return {
         ...state,
@@ -55,3 +66,4 @@ export default function cardReducer(state = initialState, action) {
       return state;
   }
 }
+

@@ -20,3 +20,11 @@ export const setHeader = (title, id) => {
     id,
   };
 };
+// export const setCompleted = (taskId, cardId, isCompleted) => {
+//   return {
+//     type: consts.SET_COMPLETED,
+//     taskId,
+//     cardId,
+//     isCompleted,
+//   }
+// }
