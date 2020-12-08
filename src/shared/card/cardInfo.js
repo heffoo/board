@@ -10,7 +10,7 @@ import { TaskInput } from "../card/taskInput/taskInput";
 export function CardInfo({ card }) {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
-
+  
   const dispatch = useDispatch();
 
   const addNewTask = (e) => {
