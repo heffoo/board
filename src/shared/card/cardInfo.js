@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addTask, setHeader, delTask } from "../../store/card/task/taskActions";
+import { addTask, setHeader, delTask, checkTask } from "../../store/card/task/taskActions";
 import { deleteCard } from '../../store/card/cardActions'
 import { useDispatch } from "react-redux";
 import './cardInfo.scss'
@@ -28,7 +28,11 @@ export function CardInfo({ card }) {
     e.preventDefault();
     dispatch(setHeader(inputValue, card.id));
   };
-
+const setChecked = (cardId, taskId, index) => {
+console.log(index) 
+ dispatch(checkTask(cardId, taskId, index))
+  
+}
   return (
     <div className="cardItem">
       <button onClick={closeCard} className="close-btn">
@@ -47,7 +51,7 @@ export function CardInfo({ card }) {
       <div className="block-scroll-wrapper">
         <div className="block-scroll">
           {card.title &&
-            card.tasks.map((task, index) => <Task deleteTask={deleteTask} cardId={card.id} task={task} key={index} />)}
+            card.tasks.map((task, index) => <Task setChecked={setChecked} deleteTask={deleteTask} cardId={card.id} task={task} key={index} />)}
         </div>
       </div>
     </div>

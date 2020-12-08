@@ -17,7 +17,7 @@ export default function cardReducer(state = initialState, action) {
         ...state,
         cards: state.cards.map((card) => {
           if (card.id === action.id) {
-            return { ...card, tasks: [ {id: uuidv4(), value: action.value}, ...card.tasks] };
+            return { ...card, tasks: [ {id: uuidv4(), completed: false, value: action.value}, ...card.tasks] };
           }
           return card;
         }),
@@ -32,6 +32,27 @@ export default function cardReducer(state = initialState, action) {
           } else return card;
         }),
       };
+      
+      case consts.CHECK_TASK:
+      return {
+        ...state,
+    cards: state.cards.map((card, index) => {
+        if (card.id === action.cardId) {
+          return {
+            ...card,
+            tasks: card.tasks.map((task) => {
+              if (task.id === action.taskId) {
+                return {
+                  ...task,
+                  completed: !task.completed,
+                };
+              } else {return task;}
+            }),
+          };
+        } else {return card;}
+      })
+      };
+
     case consts.SET_HEADER:
       return {
         ...state,

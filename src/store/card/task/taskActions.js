@@ -20,3 +20,11 @@ export const setHeader = (title, id) => {
     id,
   };
 };
+export const checkTask = (cardId, taskId, index) => {
+  return {
+    type: consts.CHECK_TASK,
+    taskId,
+    cardId,
+    id:index,
+  }
+}
