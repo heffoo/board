@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { addTask, setHeader, delTask, checkTask } from "../../store/card/task/taskActions";
-import { deleteCard } from '../../store/card/cardActions'
+import { deleteCard } from "../../store/card/cardActions";
 import { useDispatch } from "react-redux";
-import './cardInfo.scss'
+import "./cardInfo.scss";
 import { Task } from "../card/task/task";
 import { CardHeader } from "../card/headerInput/headerInput";
 import { TaskInput } from "../card/taskInput/taskInput";
@@ -10,7 +10,7 @@ import { TaskInput } from "../card/taskInput/taskInput";
 export function CardInfo({ card }) {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
-  
+
   const dispatch = useDispatch();
 
   const addNewTask = (e) => {
@@ -18,21 +18,23 @@ export function CardInfo({ card }) {
     dispatch(addTask(value, card.id));
     setValue("");
   };
+
   const closeCard = () => {
     dispatch(deleteCard(card.id));
   };
+
   const deleteTask = (cardId, taskId) => {
     dispatch(delTask(cardId, taskId));
   };
+
   const setTitle = (e) => {
     e.preventDefault();
     dispatch(setHeader(inputValue, card.id));
   };
-const setChecked = (cardId, taskId, index) => {
-console.log(index) 
- dispatch(checkTask(cardId, taskId, index))
-  
-}
+
+  const setChecked = (cardId, taskId, index) => {
+    dispatch(checkTask(cardId, taskId, index));
+  };
   return (
     <div className="cardItem">
       <button onClick={closeCard} className="close-btn">
@@ -45,13 +47,16 @@ console.log(index)
       ) : (
         <div>
           <hr className="task-hr"></hr>
-          <TaskInput addNewTask={addNewTask} setValue={setValue} value={value}/>
+          <TaskInput addNewTask={addNewTask} setValue={setValue} value={value} />
         </div>
-      )}<div className="modals" id="modals"></div>
+      )}
+      <div className="modals" id="modals"></div>
       <div className="block-scroll-wrapper">
         <div className="block-scroll">
           {card.title &&
-            card.tasks.map((task, index) => <Task setChecked={setChecked} deleteTask={deleteTask} cardId={card.id} task={task} key={index} />)}
+            card.tasks.map((task, index) => (
+              <Task setChecked={setChecked} deleteTask={deleteTask} cardId={card.id} task={task} key={index} />
+            ))}
         </div>
       </div>
     </div>
